@@ -1,0 +1,96 @@
+﻿@using FinanceTracker.Data.Entities.CoinEntities
+@{
+    Layout = "~/Views/Shared/_InternalLayout.cshtml";
+}
+@model List<CoinPortfolio>
+<div class="container">
+    <div class="text-center mb-5">
+        <a asp-controller="CoinPortfolio" asp-action="AddPortfolio"><h3>Click to add portfolio</h3></a>
+        <p class="lead">Which makes you rich in the future</p>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3" style="padding-top:20px">
+            <div class="card-body">
+                <div class="d-flex flex-column flex-lg-row">
+                    <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
+                    <div class="row flex-fill">
+                        <div class="col-sm-5">
+                            <h4 class="h5">@item.Name</h4>
+                            <span class="badge bg-secondary">@item.Name</span> <span class="badge bg-success">
+                                @(item.CoinAssets.Sum(x=>x.Quantity))
+                            </span>
+                        </div>
+                        <div class="col-sm-4 py-2">
+                           
+                        </div>
+                        <div class="col-sm-3 text-lg-end">
+                            <a asp-controller="CoinPortfolio" asp-action="ViewPortfolio" asp-route-id="@item.PortfolioCode" class="btn btn-primary stretched-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        background: #eee;
+    }
+
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 1rem;
+    }
+
+    .card-body {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.5rem 1.5rem;
+    }
+
+    .avatar-text {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background: #000;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .avatar {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .rounded-3 {
+        border-radius: 0.5rem !important;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    .me-4 {
+        margin-right: 1.5rem !important;
+    }
+</style>
